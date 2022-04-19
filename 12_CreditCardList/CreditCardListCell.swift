@@ -51,8 +51,7 @@ class CreditCardListCell: UITableViewCell {
     var rankLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "-위"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .gray
         return label
     }()
@@ -60,17 +59,16 @@ class CreditCardListCell: UITableViewCell {
     var promotionLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "-만원 혜택"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .white
+        label.backgroundColor = .gray
         return label
     }()
     
     var cardNameLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "신용카드"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
     }()
@@ -94,10 +92,10 @@ class CreditCardListCell: UITableViewCell {
     func cellSet(){
         self.addSubview(self.mainStackView)
         NSLayoutConstraint.activate([
-            self.mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            self.mainStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            self.mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            self.mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            self.mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
         
         self.mainStackView.addArrangedSubview(self.cardImg)
@@ -106,8 +104,8 @@ class CreditCardListCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.cardImg.widthAnchor.constraint(equalToConstant: 40),
             self.cardImg.heightAnchor.constraint(equalToConstant: 30),
-            self.detailArrow.widthAnchor.constraint(equalToConstant: 20),
-            self.detailArrow.heightAnchor.constraint(equalToConstant: 15)
+            self.detailArrow.widthAnchor.constraint(equalToConstant: 15),
+            self.detailArrow.heightAnchor.constraint(equalToConstant: 20)
         ])
         
         self.textStackView.addArrangedSubview(self.detailStackView)
