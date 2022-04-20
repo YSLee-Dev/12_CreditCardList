@@ -11,6 +11,8 @@ import Lottie
 class CardDetailViewController: UIViewController {
 
     lazy var margin = self.navigationController?.systemMinimumLayoutMargins.leading
+    var DetailData : PromotionDetail?
+    let list = DetailViewCellList()
     
     var mTitle : UILabel = {
         let label = UILabel()
@@ -43,6 +45,17 @@ class CardDetailViewController: UIViewController {
         return view
     }()
     
+    lazy var detailTableView : UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.separatorStyle = .none
+        table.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailCellId")
+        table.dataSource = self
+        table.delegate = self
+        table.backgroundColor = .white
+        return table
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSet()
@@ -57,14 +70,35 @@ class CardDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             self.mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.mainStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: margin),
-            self.mainStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -margin)
+            self.mainStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -margin),
+            self.mainStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
         ])
         
         self.mainStackView.addArrangedSubview(self.imgView)
         self.mainStackView.addArrangedSubview(self.mTitle)
+        self.mainStackView.addArrangedSubview(self.detailTableView)
         NSLayoutConstraint.activate([
             self.imgView.widthAnchor.constraint(equalTo: self.mainStackView.widthAnchor),
-            self.imgView.heightAnchor.constraint(equalTo: self.imgView.widthAnchor, multiplier: 0.5)
+            self.imgView.heightAnchor.constraint(equalTo: self.imgView.widthAnchor, multiplier: 0.5),
+            self.detailTableView.bottomAnchor.constraint(equalTo: self.mainStackView.bottomAnchor),
+            self.detailTableView.widthAnchor.constraint(equalTo: self.mainStackView.widthAnchor)
         ])
     }
+}
+
+extension CardDetailViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.list.Celllist.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let detail = self.DetailData else {return UITableViewCell()}
+        let detailList = [detail.period, detail.condition, detail.benefitCondition, detail.benefitDetail, detail.benefitDate]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCellId", for: indexPath) as? DetailTableViewCell else {return UITableViewCell()}
+        cell.Mtitle.text = "\(self.list.Celllist[indexPath.row]): "
+        cell.detailLabel.text = detailList[indexPath.row]
+        return cell
+    }
+    
 }

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         return table
     }()
     
-    var creditCardList : [CreditCard] = [CreditCard(id: 1, rank: 1, name: "TEST", cardImageURL: "nil", promotionDetail: PromotionDetail(companyName: "TEST", period: "TEST", amount: 1, condition: "TEST", benefitCondition: "TEST", benefitDetail: "TEST", benefitDate: "TEST"), isSelected: false)]
+    var creditCardList : [CreditCard] = [CreditCard(id: 1, rank: 1, name: "**카드", cardImageURL: "nil", promotionDetail: PromotionDetail(period: "제한 없음", condition: "자격 없음", benefitCondition: "자격 없음", benefitDetail: "혜택 없음", benefitDate: "지급 불가", companyName: "**카드", amount: 1), isSelected: false)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,7 @@ class ViewController: UIViewController {
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //self.creditCardList.count
-        1
+        self.creditCardList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +62,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailV = CardDetailViewController()
+        detailV.DetailData = self.creditCardList[indexPath.row].promotionDetail
         self.navigationController?.pushViewController(detailV, animated: true)
     }
 }
