@@ -7,9 +7,12 @@
 
 import UIKit
 import Kingfisher
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
+    var ref : DatabaseReference! // 파이어베이스 레퍼런스(데이터베이스의 루트)
+    
     lazy var mainTableView : UITableView =  {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -20,10 +23,11 @@ class ViewController: UIViewController {
         return table
     }()
     
-    var creditCardList : [CreditCard] = [CreditCard(id: 1, rank: 1, name: "**카드", cardImageURL: "nil", promotionDetail: PromotionDetail(period: "제한 없음", condition: "자격 없음", benefitCondition: "자격 없음", benefitDetail: "혜택 없음", benefitDate: "지급 불가", companyName: "**카드", amount: 1), isSelected: false)]
+    var creditCardList : [CreditCard] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        databaseSet()
         viewSet()
     }
 
@@ -39,7 +43,28 @@ class ViewController: UIViewController {
             self.mainTableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
-
+    
+    func databaseSet(){
+        self.ref = Database.database().reference()
+        ref.observe(.value){ snapshot in
+            guard let value = snapshot.value as? [String : [String:Any]] else {return}
+           
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: value)
+                let cardData = try JSONDecoder().decode([String:CreditCard].self, from: jsonData)
+                let cardList = Array(cardData.values)
+                self.creditCardList = cardList.sorted{
+                    $0.rank < $1.rank
+                }
+                
+                DispatchQueue.main.async {
+                    self.mainTableView.reloadData()
+                }
+            }catch{
+                print("Error JSON : \(error)")
+            }
+        }
+    }
 }
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource{

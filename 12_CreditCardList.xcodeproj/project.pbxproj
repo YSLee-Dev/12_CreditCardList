@@ -19,6 +19,7 @@
 		D4CC7614280EBE6B00B53AFD /* money.json in Resources */ = {isa = PBXBuildFile; fileRef = D4CC7613280EBE6A00B53AFD /* money.json */; };
 		D4CC76162810076C00B53AFD /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC76152810076C00B53AFD /* DetailTableViewCell.swift */; };
 		D4CC761828100A1100B53AFD /* DetailViewCellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC761728100A1100B53AFD /* DetailViewCellList.swift */; };
+		D4CC761A28169C7D00B53AFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4CC761928169C7D00B53AFD /* GoogleService-Info.plist */; };
 		E7C2D1F686FF4BCA8FD3FA6E /* Pods_12_CreditCardList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A141617A99419E4D52F215EF /* Pods_12_CreditCardList.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		D4CC7613280EBE6A00B53AFD /* money.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = money.json; sourceTree = "<group>"; };
 		D4CC76152810076C00B53AFD /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		D4CC761728100A1100B53AFD /* DetailViewCellList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCellList.swift; sourceTree = "<group>"; };
+		D4CC761928169C7D00B53AFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		D4CC75F42806C97B00B53AFD /* 12_CreditCardList */ = {
 			isa = PBXGroup;
 			children = (
+				D4CC761928169C7D00B53AFD /* GoogleService-Info.plist */,
 				D4CC7613280EBE6A00B53AFD /* money.json */,
 				D4CC75F52806C97B00B53AFD /* AppDelegate.swift */,
 				D4CC75F72806C97B00B53AFD /* SceneDelegate.swift */,
@@ -171,6 +174,7 @@
 			files = (
 				D4CC76022806C97D00B53AFD /* LaunchScreen.storyboard in Resources */,
 				D4CC75FF2806C97D00B53AFD /* Assets.xcassets in Resources */,
+				D4CC761A28169C7D00B53AFD /* GoogleService-Info.plist in Resources */,
 				D4CC7614280EBE6B00B53AFD /* money.json in Resources */,
 				D4CC75FD2806C97B00B53AFD /* Main.storyboard in Resources */,
 			);
