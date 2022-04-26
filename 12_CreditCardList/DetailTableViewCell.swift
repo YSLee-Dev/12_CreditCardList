@@ -26,7 +26,7 @@ class DetailTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority.init(500), for: .horizontal)
         return label
     }()
     
@@ -36,6 +36,7 @@ class DetailTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 2
         label.adjustsFontSizeToFitWidth = true
+        label.setContentCompressionResistancePriority(UILayoutPriority.init(250), for: .horizontal)
         label.textColor = .black
         return label
     }()

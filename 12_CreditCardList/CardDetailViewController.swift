@@ -11,7 +11,7 @@ import Lottie
 class CardDetailViewController: UIViewController {
 
     lazy var margin = self.navigationController?.systemMinimumLayoutMargins.leading
-    var DetailData : PromotionDetail?
+    var detailData : PromotionDetail?
     let list = DetailViewCellList()
     
     var mTitle : UILabel = {
@@ -83,6 +83,8 @@ class CardDetailViewController: UIViewController {
             self.detailTableView.bottomAnchor.constraint(equalTo: self.mainStackView.bottomAnchor),
             self.detailTableView.widthAnchor.constraint(equalTo: self.mainStackView.widthAnchor)
         ])
+        guard let detail = self.detailData else {return}
+        self.mTitle.text = "\(detail.companyName)카드를 사용하시면\n\(detail.benefitDetail) 드려요."
     }
 }
 
@@ -92,7 +94,7 @@ extension CardDetailViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let detail = self.DetailData else {return UITableViewCell()}
+        guard let detail = self.detailData else {return UITableViewCell()}
         let detailList = [detail.period, detail.condition, detail.benefitCondition, detail.benefitDetail, detail.benefitDate]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCellId", for: indexPath) as? DetailTableViewCell else {return UITableViewCell()}

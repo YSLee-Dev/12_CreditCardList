@@ -86,8 +86,33 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.mainTableView.deselectRow(at: indexPath, animated: true)
         let detailV = CardDetailViewController()
-        detailV.DetailData = self.creditCardList[indexPath.row].promotionDetail
+        detailV.detailData = self.creditCardList[indexPath.row].promotionDetail
         self.navigationController?.pushViewController(detailV, animated: true)
+        
+        // 옵션 1 == 경로를 알 때
+        // let cardID = self.creditCardList[indexPath.row].id
+        // ref.child("Item\(cardID)/isSelected").setValue(true)
+        
+        // 옵션 2 == 경로를 모를 때
+        ref.queryOrdered(byChild: "id").queryEqual(toValue: self.creditCardList[indexPath.row].id).observe(.value){ [weak self] snapshot in
+            guard let self = self, let value = snapshot.value as? [String : [String:Any]], let key = value.keys.first else {return}
+            self.ref.child("\(key)/isSelected").setValue(true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            // 경로를 모르는 경우
+            ref.queryOrdered(byChild: "id").queryEqual(toValue: self.creditCardList[indexPath.row].id).observe(.value){ [weak self] snapshot in
+                guard let self = self, let value = snapshot.value as? [String:[String:Any]], let key = value.keys.first else {return}
+                self.ref.child(key).removeValue()
+            }
+        }
     }
 }
