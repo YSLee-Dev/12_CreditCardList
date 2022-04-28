@@ -9,4 +9,7 @@ target '12_CreditCardList' do
 pod 'Kingfisher'
 pod 'lottie-ios'
 pod 'Firebase/Database'
+
+pod 'Firebase/Firestore'
+pod 'FirebaseFirestoreSwift'
 end
