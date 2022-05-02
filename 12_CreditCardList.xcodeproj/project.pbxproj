@@ -20,6 +20,7 @@
 		D4CC76162810076C00B53AFD /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC76152810076C00B53AFD /* DetailTableViewCell.swift */; };
 		D4CC761828100A1100B53AFD /* DetailViewCellList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC761728100A1100B53AFD /* DetailViewCellList.swift */; };
 		D4CC761A28169C7D00B53AFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4CC761928169C7D00B53AFD /* GoogleService-Info.plist */; };
+		D4DB153B281FD709009A568F /* CreditCardDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DB153A281FD709009A568F /* CreditCardDummy.swift */; };
 		E7C2D1F686FF4BCA8FD3FA6E /* Pods_12_CreditCardList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A141617A99419E4D52F215EF /* Pods_12_CreditCardList.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		D4CC76152810076C00B53AFD /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		D4CC761728100A1100B53AFD /* DetailViewCellList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCellList.swift; sourceTree = "<group>"; };
 		D4CC761928169C7D00B53AFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4DB153A281FD709009A568F /* CreditCardDummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardDummy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				D4CC7613280EBE6A00B53AFD /* money.json */,
 				D4CC75F52806C97B00B53AFD /* AppDelegate.swift */,
 				D4CC75F72806C97B00B53AFD /* SceneDelegate.swift */,
+				D4DB153A281FD709009A568F /* CreditCardDummy.swift */,
 				D4CC75F92806C97B00B53AFD /* ViewController.swift */,
 				D4CC7611280EB5F800B53AFD /* CardDetailViewController.swift */,
 				D4CC761728100A1100B53AFD /* DetailViewCellList.swift */,
@@ -237,6 +240,7 @@
 				D4CC761828100A1100B53AFD /* DetailViewCellList.swift in Sources */,
 				D4CC75F62806C97B00B53AFD /* AppDelegate.swift in Sources */,
 				D4CC75F82806C97B00B53AFD /* SceneDelegate.swift in Sources */,
+				D4DB153B281FD709009A568F /* CreditCardDummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
