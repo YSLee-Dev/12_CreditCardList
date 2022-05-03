@@ -119,6 +119,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
         detailV.detailData = self.creditCardList[indexPath.row].promotionDetail
         self.navigationController?.pushViewController(detailV, animated: true)
         
+        // 파이어베이스 리얼타임
         /*
         // 옵션 1 == 경로를 알 때
         // let cardID = self.creditCardList[indexPath.row].id
@@ -130,6 +131,18 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
             self.ref.child("\(key)/isSelected").setValue(true)
         }
          */
+        
+        // 파이어베이스 파이어스토어
+        // 옵션 1 == 경로를 알 때
+        // let cardId = creditCardList[indexPath.row].id
+        // self.db.collection("creditCardList").document("card\(cardId)").updateData(["isSelected" : true])
+        
+        // 옵션 2 == 경로를 모를 때
+        let cardId = creditCardList[indexPath.row].id
+        self.db.collection("creditCardList").whereField("id", isEqualTo: cardId).getDocuments{ snapshot, _ in
+            guard let document = snapshot?.documents.first else{ return }
+            document.reference.updateData(["isSelected" : true])
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -138,6 +151,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            // 파이어베이스 리얼타임
             /*
             // 경로를 모르는 경우
             ref.queryOrdered(byChild: "id").queryEqual(toValue: self.creditCardList[indexPath.row].id).observe(.value){ [weak self] snapshot in
@@ -145,6 +159,13 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource{
                 self.ref.child(key).removeValue()
             }
              */
+            
+            // 파이어베이스 파이어스토어
+            // 경로를 모르는 경우
+            self.db.collection("creditCardList").whereField("id", isEqualTo: self.creditCardList[indexPath.row].id).getDocuments{ snapshot, _ in
+                guard let reference = snapshot?.documents.first?.reference else {return}
+                reference.delete()
+            }
         }
     }
 }
